@@ -1,20 +1,19 @@
-// FAQs shown on the contact page (and anywhere else useful).
-// These also feed FAQPage structured data, which can earn richer search listings.
-
 export type Faq = { question: string; answer: string };
 
 export const faqs: Faq[] = [
   {
-    question: "A question customers actually ask before getting in touch?",
+    question: "Who does Bennett Advisory work with?",
     answer:
-      "A plain, direct answer. No sales language — just the information the customer needs.",
+      "The practice works with New Zealand families, business owners, trustees and organisations that need accounting, tax or trust support.",
   },
   {
-    question: "Another common question, e.g. about pricing or timing?",
-    answer: "A plain, direct answer.",
+    question: "Where is the office?",
+    answer:
+      "Bennett Advisory is based at French Bay Yacht Club in Titirangi, Auckland. Please arrange a time before visiting.",
   },
   {
-    question: "A third question, e.g. about service area or availability?",
-    answer: "A plain, direct answer.",
+    question: "What should I include in an initial enquiry?",
+    answer:
+      "A short outline of the accounting, tax or trust question is enough. Melanie can then confirm the most useful next step.",
   },
 ];

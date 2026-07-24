@@ -76,3 +76,8 @@ commits, generated pages, logs, or public responses.
 - Confirm the enquiry form provider and test destination.
 - Confirm that all four team members and experience figures remain current.
 - Confirm any prototype service descriptions that go beyond the workbook wording.
+
+The first-pass Contact page uses a privacy-light external Google Maps link rather
+than an embed, and opens a pre-addressed email from the enquiry form. These are
+review defaults only; confirm the production map and form-delivery decisions
+before launch.

@@ -6,20 +6,17 @@ import { withBase } from "@/lib/base";
 
 <BaseLayout
   title="Thank you"
-  description="Your enquiry has been received."
+  description="Your Bennett Advisory enquiry has been received."
   robots="noindex, nofollow"
 >
-  <section class="hero">
+  <section class="not-found section">
     <div class="container">
       <span class="overline">Enquiry sent</span>
-      <h1>Thanks — we've got your message</h1>
+      <h1>Thank you — your message is on its way.</h1>
       <p class="lead">
-        We'll come back to you as soon as we can. If it's urgent, call
-        <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.
+        If the matter is urgent, call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.
       </p>
-      <div class="hero-actions">
-        <a class="btn btn--ghost" href={withBase("/")}>Back to the homepage</a>
-      </div>
+      <a class="btn btn--primary" href={withBase("/")}>Return home</a>
     </div>
   </section>
 </BaseLayout>

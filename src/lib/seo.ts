@@ -8,7 +8,7 @@ import type { Faq } from "@/data/faqs";
 export function localBusinessSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["ProfessionalService", "AccountingService"],
     "@id": `${site.url}/#localbusiness`,
     name: site.name,
     legalName: site.legalName,
@@ -17,10 +17,13 @@ export function localBusinessSchema() {
     telephone: site.phone,
     address: {
       "@type": "PostalAddress",
+      streetAddress: `${site.address.venue}, ${site.address.street}`,
       addressLocality: site.address.locality,
       addressRegion: site.address.region,
+      postalCode: site.address.postalCode,
       addressCountry: site.address.country,
     },
+    openingHours: "Mo-Fr 09:00-15:00",
     areaServed: site.areas.map((area) => ({ "@type": "Place", name: area })),
     makesOffer: services.map((service) => ({
       "@type": "Offer",
@@ -28,7 +31,7 @@ export function localBusinessSchema() {
         "@type": "Service",
         name: service.name,
         description: service.summary,
-        url: `${site.url}/services/${service.slug}/`,
+        url: `${site.url}/#${service.id}`,
       },
     })),
     ...(site.social.length > 0 ? { sameAs: site.social.map((s) => s.href) } : {}),

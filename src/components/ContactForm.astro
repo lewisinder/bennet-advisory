@@ -1,31 +1,18 @@
 ---
+import { Mail } from "@lucide/astro";
 import { site } from "@/data/site";
-
-// The form posts to Web3Forms (web3forms.com), which emails the enquiry
-// straight to the client's inbox — works on any host (Netlify, Cloudflare
-// Pages, anywhere). Set `formAccessKey` in src/data/site.ts per client.
-// The hidden `botcheck` checkbox is a spam honeypot.
-// Note: after submitting, Web3Forms redirects to the live thank-you page
-// (built from site.url), so test the form on the deployed site, not localhost.
 ---
 
-<form class="form" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value={site.formAccessKey} />
-  <input type="hidden" name="subject" value={`New website enquiry — ${site.name}`} />
-  <input type="hidden" name="from_name" value={`${site.name} website`} />
-  <input type="hidden" name="redirect" value={`${site.url}/thank-you/`} />
-  <input
-    type="checkbox"
-    name="botcheck"
-    class="visually-hidden"
-    tabindex="-1"
-    autocomplete="off"
-    aria-hidden="true"
-  />
-
-  <div class="field">
-    <label for="contact-name">Name</label>
-    <input id="contact-name" name="name" type="text" autocomplete="name" required />
+<form class="form" data-enquiry-form>
+  <div class="form-row">
+    <div class="field">
+      <label for="contact-name">Name</label>
+      <input id="contact-name" name="name" type="text" autocomplete="name" required />
+    </div>
+    <div class="field">
+      <label for="contact-phone">Phone <span class="field-hint">(optional)</span></label>
+      <input id="contact-phone" name="phone" type="tel" autocomplete="tel" />
+    </div>
   </div>
 
   <div class="field">
@@ -34,17 +21,48 @@ import { site } from "@/data/site";
   </div>
 
   <div class="field">
-    <label for="contact-phone">Phone <span class="field-hint">(optional)</span></label>
-    <input id="contact-phone" name="phone" type="tel" autocomplete="tel" />
+    <label for="contact-topic">What can we help with?</label>
+    <select id="contact-topic" name="topic">
+      <option>Trust services</option>
+      <option>Accounting and tax</option>
+      <option>Something else</option>
+    </select>
   </div>
 
   <div class="field">
-    <label for="contact-message">What do you need?</label>
+    <label for="contact-message">Your enquiry</label>
     <textarea id="contact-message" name="message" required></textarea>
-    <span class="field-hint">A sentence or two is plenty — we'll follow up with any questions.</span>
+    <span class="field-hint">A short outline is plenty. Please do not include sensitive financial information.</span>
   </div>
 
-  <div>
-    <button class="btn btn--primary" type="submit">Send enquiry</button>
-  </div>
+  <button class="btn btn--primary" type="submit">
+    <Mail size={16} aria-hidden="true" />
+    Open email to send
+  </button>
+  <p class="form-status" aria-live="polite">
+    This first-pass form opens your email app. Direct website delivery will be connected before launch.
+  </p>
 </form>
+
+<script is:inline define:vars={{ recipient: site.email }}>
+  document.querySelectorAll("[data-enquiry-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get("name") ?? "");
+      const phone = String(data.get("phone") ?? "");
+      const email = String(data.get("email") ?? "");
+      const topic = String(data.get("topic") ?? "");
+      const message = String(data.get("message") ?? "");
+      const subject = `Website enquiry — ${topic}`;
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone || "Not supplied"}`,
+        "",
+        message,
+      ].join("\n");
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  });
+</script>

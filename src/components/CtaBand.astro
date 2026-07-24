@@ -1,26 +1,44 @@
 ---
+import { Image } from "astro:assets";
+import { ArrowRight, Phone } from "@lucide/astro";
+import coast from "@/assets/french-bay-yacht-club.jpeg";
 import { site } from "@/data/site";
 import { withBase } from "@/lib/base";
 
-// The closing call-to-action band used at the bottom of most pages.
 type Props = {
   heading?: string;
   text?: string;
 };
 
 const {
-  heading = "Ready to get started?",
-  text = `Get in touch and tell us what you need — we'll come back to you with clear next steps.`,
+  heading = "Need clarity around your accounting, trust or tax position?",
+  text = "Start with a straightforward conversation with Bennett Advisory.",
 } = Astro.props;
 ---
 
-<section class="section section--dark cta-band">
-  <div class="container">
+<section class="contact-band">
+  <Image
+    class="contact-band__image"
+    src={coast}
+    alt=""
+    widths={[800, 1200, 1600]}
+    sizes="100vw"
+    loading="lazy"
+  />
+  <div class="contact-band__overlay"></div>
+  <div class="container contact-band__content">
+    <span class="overline">Get in touch</span>
     <h2>{heading}</h2>
-    <p class="lead">{text}</p>
+    <p>{text}</p>
     <div class="hero-actions">
-      <a class="btn btn--primary" href={withBase(site.primaryCta.href)}>{site.primaryCta.label}</a>
-      <a class="btn btn--ghost" href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a>
+      <a class="btn btn--primary" href={withBase(site.primaryCta.href)}>
+        Get in touch
+        <ArrowRight size={16} aria-hidden="true" />
+      </a>
+      <a class="btn btn--outline-light" href={`tel:${site.phone}`}>
+        <Phone size={16} aria-hidden="true" />
+        {site.phoneDisplay}
+      </a>
     </div>
   </div>
 </section>

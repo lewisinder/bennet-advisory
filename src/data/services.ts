@@ -1,59 +1,91 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// SERVICES — repeated content lives as typed data, never hardcoded markup.
-// Pages map over this array; one component renders each item.
-// Adding a service = adding one entry here. This also keeps a later move
-// to a CMS clean.
-// ─────────────────────────────────────────────────────────────────────────────
-
 export type Service = {
-  slug: string;
+  id: string;
+  number: string;
   name: string;
-  // One line shown on cards and in meta descriptions (aim for 150–160 chars on detail pages).
   summary: string;
-  // Paragraphs for the detail page. Plain, specific, useful.
-  description: string[];
-  // Short bullet points: what's included, what to expect.
-  includes: string[];
-  // Lucide icon name — must exist in the icon map in ServiceCard.astro.
-  icon: string;
+  details: string[];
+  group: "Trusts" | "Accounting & tax";
 };
 
 export const services: Service[] = [
   {
-    slug: "service-one",
-    name: "Service One",
-    summary: "One plain sentence saying what this service is and who it's for.",
-    description: [
-      "First paragraph: what the service is and the problem it solves, in the customer's language.",
-      "Second paragraph: how it works — the process, timeframes, and what the customer needs to do.",
+    id: "trust-establishment",
+    number: "01",
+    name: "Trust establishment",
+    summary:
+      "Support to establish a trust with a clear purpose, structure and record from the outset.",
+    details: [
+      "Purpose and structure",
+      "Establishment documentation",
+      "Initial trustee records",
     ],
-    includes: [
-      "A concrete thing that's included",
-      "Another concrete thing",
-      "A third concrete thing",
-    ],
-    icon: "wrench",
+    group: "Trusts",
   },
   {
-    slug: "service-two",
-    name: "Service Two",
-    summary: "One plain sentence saying what this service is and who it's for.",
-    description: [
-      "First paragraph: what the service is and the problem it solves.",
-      "Second paragraph: how it works and what to expect.",
+    id: "trustee-services",
+    number: "02",
+    name: "Trustee services",
+    summary:
+      "Independent professional support for trustees as they carry out their duties and make decisions.",
+    details: [
+      "Trustee obligations",
+      "Decision support",
+      "Governance records",
     ],
-    includes: ["What's included, item one", "Item two", "Item three"],
-    icon: "clipboard-check",
+    group: "Trusts",
   },
   {
-    slug: "service-three",
-    name: "Service Three",
-    summary: "One plain sentence saying what this service is and who it's for.",
-    description: [
-      "First paragraph: what the service is and the problem it solves.",
-      "Second paragraph: how it works and what to expect.",
+    id: "trust-administration",
+    number: "03",
+    name: "Ongoing trust administration",
+    summary:
+      "Practical support to keep resolutions, distributions and the trust's core records in order.",
+    details: [
+      "Minutes and resolutions",
+      "Distribution records",
+      "Annual administration",
     ],
-    includes: ["What's included, item one", "Item two", "Item three"],
-    icon: "sparkles",
+    group: "Trusts",
+  },
+  {
+    id: "trust-health-checks",
+    number: "04",
+    name: "Trust health-check reviews",
+    summary:
+      "A structured review of an existing trust's purpose, records, administration and current needs.",
+    details: [
+      "Document review",
+      "Administration review",
+      "Clear next steps",
+    ],
+    group: "Trusts",
+  },
+  {
+    id: "accounting-tax",
+    number: "05",
+    name: "Accounting and tax advice",
+    summary:
+      "Clear accounting and tax support for individuals, companies, partnerships and trusts.",
+    details: [
+      "Accounts and tax returns",
+      "Overseas income",
+      "Rental properties",
+    ],
+    group: "Accounting & tax",
+  },
+  {
+    id: "tax-structuring",
+    number: "06",
+    name: "Specialist tax and structuring",
+    summary:
+      "Advice for business transactions, ownership structures and domestic or offshore tax questions.",
+    details: [
+      "Business transactions",
+      "Domestic and offshore structures",
+      "Tax risk",
+    ],
+    group: "Accounting & tax",
   },
 ];
+
+export const serviceGroups = ["Trusts", "Accounting & tax"] as const;

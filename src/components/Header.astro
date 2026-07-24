@@ -1,5 +1,7 @@
 ---
-import { Menu } from "@lucide/astro";
+import { Image } from "astro:assets";
+import { ArrowRight, Menu, X } from "@lucide/astro";
+import logo from "@/assets/bennett-advisory-logo.jpg";
 import { site } from "@/data/site";
 import { withBase, pathnameWithoutBase } from "@/lib/base";
 
@@ -9,16 +11,16 @@ const isCurrent = (href: string) => (href.replace(/\/$/, "") || "/") === pathnam
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href={withBase("/")}>{site.name}</a>
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="site-nav"
-    >
-      <Menu size={22} aria-hidden="true" />
-      <span class="visually-hidden">Menu</span>
+    <a class="brand" href={withBase("/")} aria-label={`${site.name} home`}>
+      <Image src={logo} alt={site.name} width={180} quality={90} />
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <Menu class="menu-open" size={21} aria-hidden="true" />
+      <X class="menu-close" size={21} aria-hidden="true" />
+      <span class="visually-hidden">Open menu</span>
     </button>
+
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
         {site.nav.map((item) => (
@@ -28,22 +30,33 @@ const isCurrent = (href: string) => (href.replace(/\/$/, "") || "/") === pathnam
             </a>
           </li>
         ))}
-        <li>
-          <a class="btn btn--primary nav-cta" href={withBase(site.primaryCta.href)}>
-            {site.primaryCta.label}
-          </a>
-        </li>
       </ul>
     </nav>
+
+    <a class="btn btn--nav" href={withBase(site.primaryCta.href)}>
+      {site.primaryCta.label}
+      <ArrowRight size={15} aria-hidden="true" />
+    </a>
   </div>
 </header>
 
 <script>
-  // Mobile nav toggle — the only JavaScript on the site.
-  const toggle = document.querySelector(".nav-toggle");
+  const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
   const nav = document.getElementById("site-nav");
+
+  const closeMenu = () => {
+    nav?.classList.remove("is-open");
+    toggle?.setAttribute("aria-expanded", "false");
+    const label = toggle?.querySelector(".visually-hidden");
+    if (label) label.textContent = "Open menu";
+  };
+
   toggle?.addEventListener("click", () => {
-    const open = nav?.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", String(Boolean(open)));
+    const open = nav?.classList.toggle("is-open") ?? false;
+    toggle.setAttribute("aria-expanded", String(open));
+    const label = toggle.querySelector(".visually-hidden");
+    if (label) label.textContent = open ? "Close menu" : "Open menu";
   });
+
+  nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
 </script>

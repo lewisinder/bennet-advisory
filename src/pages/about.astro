@@ -1,47 +1,100 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import TeamMember from "@/components/TeamMember.astro";
 import CtaBand from "@/components/CtaBand.astro";
 import { site } from "@/data/site";
+import { team } from "@/data/team";
 ---
 
 <BaseLayout
-  title={`About ${site.name}`}
-  description={`Who ${site.name} is, how the business started, and the people behind the work. Replace with a real 150–160 character description.`}
+  title="About"
+  description="Meet Bennett Advisory's experienced Auckland team providing practical accounting, tax and trust support to New Zealand families and business owners nationwide."
 >
-  <section class="hero">
-    <div class="container">
-      <span class="overline">About</span>
-      <h1>The story behind {site.name}</h1>
+  <section class="page-hero page-hero--dark">
+    <div class="container page-hero__grid">
+      <div>
+        <span class="section-index">About / Bennett Advisory</span>
+        <p class="eyebrow">The practice</p>
+        <h1>Experience, judgement and careful attention to detail.</h1>
+      </div>
       <p class="lead">
-        One or two sentences summarising who the business is and what it stands for.
+        A four-person team bringing accounting, tax and trust experience together
+        from French Bay in Titirangi.
       </p>
     </div>
   </section>
 
-  <section class="section section--surface">
-    <div class="container split">
-      <div>
-        <h2>How it started</h2>
+  <section class="section">
+    <div class="container page-intro-grid">
+      <aside class="page-intro-grid__aside">
+        <span class="section-index">01 / About the firm</span>
+        <p>{site.address.venue}<br />{site.address.locality}, {site.address.region}</p>
+      </aside>
+      <div class="page-copy">
         <p>
-          Real history: when the business began, who founded it, and how it got to where
-          it is. People buy from people — names and places make this credible.
+          Bennett Advisory supports New Zealand families, business owners, trustees
+          and organisations with accounting, tax and trust work.
         </p>
         <p>
-          A second paragraph about how the business works today: the team, the standards
-          they hold, the area they cover.
+          The practice is led by Melanie Bennett, whose career spans more than 25
+          years. Her experience includes more than a decade with Big Four firms,
+          progressing to Senior Manager, and leadership of Guardian Trust's corporate
+          tax function.
         </p>
-      </div>
-      <div>
-        <h2>Where we work</h2>
-        <p>Areas served, written as prose for people and search engines:</p>
-        <ul class="checklist">
-          {site.areas.map((area) => (
-            <li>{area}</li>
-          ))}
-        </ul>
+        <p>
+          Today, Melanie works alongside specialists in trust administration,
+          management and financial accounting, and experienced accounting support.
+          The team focuses on understanding each matter, communicating clearly and
+          keeping the records behind the advice in good order.
+        </p>
       </div>
     </div>
   </section>
 
-  <CtaBand />
+  <section class="section section--paper-dark">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-index">02 / Working approach</span>
+        <p class="eyebrow">How the practice works</p>
+        <h2>Advice should make the next decision clearer.</h2>
+      </div>
+      <div class="principle-grid">
+        <article>
+          <span>01</span>
+          <h3>Understand first</h3>
+          <p>The starting point is your real position, not a generic template.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Explain plainly</h3>
+          <p>Technical work is translated into useful choices and practical next steps.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Keep good records</h3>
+          <p>Careful administration supports sound decisions over time.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-index">03 / The team</span>
+        <p class="eyebrow">Four complementary roles</p>
+        <h2>Meet Bennett Advisory</h2>
+      </div>
+      <div class="team-roster">
+        {team.map((member, index) => (
+          <TeamMember member={member} index={index} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Looking for a clearer view of the next step?"
+    text="Tell us a little about the accounting, tax or trust question you are working through."
+  />
 </BaseLayout>

@@ -1,38 +1,40 @@
 ---
+import { Image } from "astro:assets";
+import logo from "@/assets/bennett-advisory-logo.jpg";
 import { site } from "@/data/site";
-import { services } from "@/data/services";
 import { withBase } from "@/lib/base";
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h4>{site.name}</h4>
-        <p class="muted">{site.tagline}</p>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <ul>
-          {services.map((service) => (
-            <li><a href={withBase(`/services/${service.slug}/`)}>{service.name}</a></li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></li>
-          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-          <li>{site.areas.join(" · ")}</li>
-        </ul>
-      </div>
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <Image src={logo} alt={site.name} width={190} quality={90} />
+      <p>{site.tagline}</p>
     </div>
-    <div class="footer-bottom">
-      <span>© {year} {site.legalName}</span>
-      <span>{site.address.locality}, {site.address.region}</span>
+
+    <div>
+      <p class="footer-label">Pages</p>
+      <ul>
+        {site.nav.map((item) => (
+          <li><a href={withBase(item.href)}>{item.label}</a></li>
+        ))}
+      </ul>
     </div>
+
+    <div>
+      <p class="footer-label">Contact</p>
+      <ul>
+        <li><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li>{site.address.locality}, {site.address.region}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© {year} {site.legalName}</span>
+    <span>French Bay · Titirangi · Auckland</span>
   </div>
 </footer>

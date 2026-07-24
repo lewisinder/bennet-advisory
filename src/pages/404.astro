@@ -6,20 +6,20 @@ import { withBase } from "@/lib/base";
 
 <BaseLayout
   title="Page not found"
-  description="That page doesn't exist."
+  description="The requested Bennett Advisory page could not be found."
   robots="noindex, nofollow"
 >
-  <section class="hero">
+  <section class="not-found section">
     <div class="container">
-      <span class="overline">404</span>
-      <h1>That page doesn't exist</h1>
+      <span class="overline">404 / File not found</span>
+      <h1>That page is not in the register.</h1>
       <p class="lead">
-        The link may be old or mistyped. Head back to the homepage, or get in touch if
+        The address may be old or mistyped. Return to the homepage or contact us if
         you were looking for something specific.
       </p>
       <div class="hero-actions">
-        <a class="btn btn--primary" href={withBase("/")}>Back to the homepage</a>
-        <a class="btn btn--ghost" href={withBase(site.primaryCta.href)}>Contact us</a>
+        <a class="btn btn--primary" href={withBase("/")}>Return home</a>
+        <a class="btn btn--outline-light" href={withBase(site.primaryCta.href)}>Contact us</a>
       </div>
     </div>
   </section>

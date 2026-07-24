@@ -4,14 +4,14 @@ This folder is the implementation workspace for the Bennett Advisory website:
 Astro, GitHub, TinaCMS, and Cloudflare. The intended public pages are Home, About,
 and Contact. Read `agents.md` and `docs/01-project-brief.md` before changing code.
 
-The folder began as a generic website-in-a-day starter. Its current placeholder
-pages and data are scaffolding, not the agreed information architecture.
+The folder began as a generic website-in-a-day starter. The initial Bennett
+Advisory design pass has now replaced that scaffolding.
 
 ## What's in the box
 
 | Piece | What it is |
 | --- | --- |
-| `src/` | The Astro skeleton. Home, About, and Contact will be public; service routes are template leftovers to remove during implementation |
+| `src/` | The Astro site. Home, About, and Contact are public; services are presented on Home |
 | `src/styles/global.css` | The design system: every colour/font/spacing token and every class the site is allowed to use |
 | `src/data/` | All business details and content as simple data files — the agent edits these, not scattered markup |
 | `.claude/skills/` | Bundled local fallbacks for `ui-ux-pro-max` and `frontend-design`; see [discovery and installation instructions](docs/06-install-skills.md) |
@@ -30,12 +30,11 @@ renders as plain HTML that Google can read without running JavaScript.
    there.
 2. Use the separate `Bennett Advisory Homepage Design/` project as visual
    direction only.
-3. **Paste the kickoff prompt** from
-   [docs/02-kickoff-prompt.md](docs/02-kickoff-prompt.md) to the agent. It sets up
-   the GitHub repo first thing, so from the first milestone onwards you can watch
-   the site take shape at `https://<your-username>.github.io/<project-name>/` —
-   that preview updates on every push, acts as an off-machine backup, and is
-   automatically hidden from Google.
+3. The kickoff prompt in [docs/02-kickoff-prompt.md](docs/02-kickoff-prompt.md)
+   established the first pass. Review later changes against the same source rules.
+   Every push to `main` updates
+   `https://lewisinder.github.io/bennet-advisory/`; the preview is automatically
+   hidden from Google.
 4. Review the design system page and homepage in the preview, give feedback, iterate.
 5. Resolve the TinaCMS/Cloudflare decision in
    [docs/05-add-a-cms-later.md](docs/05-add-a-cms-later.md).

@@ -1,43 +1,115 @@
 ---
+import { Image } from "astro:assets";
+import { ExternalLink, Mail, Phone } from "@lucide/astro";
+import locationPhoto from "@/assets/french-bay-yacht-club.jpeg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContactForm from "@/components/ContactForm.astro";
 import FaqItem from "@/components/FaqItem.astro";
 import { site } from "@/data/site";
 import { faqs } from "@/data/faqs";
 import { faqSchema } from "@/lib/seo";
+
+const mapUrl =
+  "https://www.google.com/maps/search/?api=1&query=French+Bay+Yacht+Club+Titirangi+Auckland";
 ---
 
 <BaseLayout
-  title={`Contact ${site.name}`}
-  description={`Get in touch with ${site.name} — phone, email, or the enquiry form. Replace with a real 150–160 character description.`}
+  title="Contact"
+  description="Contact Bennett Advisory in Titirangi, Auckland for practical accounting, tax or trust support. Call, email or send an initial enquiry directly to Melanie."
   schemas={[faqSchema(faqs)]}
 >
-  <section class="hero">
-    <div class="container">
-      <span class="overline">Contact</span>
-      <h1>Get in touch</h1>
+  <section class="page-hero page-hero--dark">
+    <div class="container page-hero__grid">
+      <div>
+        <span class="section-index">Contact / Bennett Advisory</span>
+        <p class="eyebrow">Start a conversation</p>
+        <h1>Tell us what you need clarity on.</h1>
+      </div>
       <p class="lead">
-        Call, email, or send the form — whichever suits. Say roughly what you need and
-        we'll take it from there.
+        A short outline is enough for an initial enquiry. Melanie can then confirm the
+        most useful next step.
       </p>
     </div>
   </section>
 
-  <section class="section section--surface">
-    <div class="container split">
+  <section class="section">
+    <div class="container contact-grid">
       <div>
-        <h2>Send an enquiry</h2>
+        <div class="section-heading">
+          <span class="section-index">01 / Enquiry</span>
+          <h2>Send the details</h2>
+          <p>
+            Please do not include passwords, IRD numbers or sensitive financial
+            information in an initial website enquiry.
+          </p>
+        </div>
         <ContactForm />
       </div>
-      <div>
-        <h2>Direct</h2>
-        <ul class="checklist">
-          <li><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></li>
-          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-          <li>Serving {site.areas.join(", ")}</li>
-        </ul>
 
-        <h2 style="margin-top: 40px;">Common questions</h2>
+      <aside class="contact-panel">
+        <h2>Contact details</h2>
+        <ul class="detail-list">
+          <li>
+            <strong>Contact</strong>
+            <span>{site.contactName}</span>
+          </li>
+          <li>
+            <strong>Phone</strong>
+            <a href={`tel:${site.phone}`}><Phone size={15} aria-hidden="true" /> {site.phoneDisplay}</a>
+          </li>
+          <li>
+            <strong>Email</strong>
+            <a href={`mailto:${site.email}`}><Mail size={15} aria-hidden="true" /> {site.email}</a>
+          </li>
+          <li>
+            <strong>Hours</strong>
+            <span>{site.hours[0].days}<br />{site.hours[0].time}</span>
+          </li>
+          <li>
+            <strong>Postal</strong>
+            <span>{site.postalAddress}</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--paper-dark">
+    <div class="container location-card">
+      <div class="location-card__copy">
+        <span class="section-index">02 / Location</span>
+        <p class="eyebrow">French Bay</p>
+        <h2>{site.address.venue}</h2>
+        <p>
+          {site.address.street}<br />
+          {site.address.locality}, {site.address.region} {site.address.postalCode}
+        </p>
+        <p>Please arrange a time before visiting.</p>
+        <a class="btn btn--outline-light" href={mapUrl} target="_blank" rel="noreferrer">
+          Open in Google Maps
+          <ExternalLink size={15} aria-hidden="true" />
+        </a>
+      </div>
+      <div class="location-card__image">
+        <Image
+          src={locationPhoto}
+          alt="French Bay Yacht Club beside the Manukau Harbour"
+          widths={[600, 900, 1200]}
+          sizes="(max-width: 820px) 100vw, 50vw"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="section-heading">
+        <span class="section-index">03 / Before you enquire</span>
+        <p class="eyebrow">Common questions</p>
+        <h2>A useful starting point</h2>
+      </div>
+      <div>
         {faqs.map((faq) => (
           <FaqItem question={faq.question} answer={faq.answer} />
         ))}

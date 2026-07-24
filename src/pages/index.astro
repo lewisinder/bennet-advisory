@@ -1,65 +1,200 @@
 ---
+import { Image } from "astro:assets";
+import { ArrowDown, ArrowRight } from "@lucide/astro";
+import heroPhoto from "@/assets/french-bay-waterfront.jpg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ServiceCard from "@/components/ServiceCard.astro";
+import TeamMember from "@/components/TeamMember.astro";
 import CtaBand from "@/components/CtaBand.astro";
 import { site } from "@/data/site";
-import { services } from "@/data/services";
+import { serviceGroups, services } from "@/data/services";
+import { team } from "@/data/team";
 import { withBase } from "@/lib/base";
+
+const steps = [
+  {
+    number: "01",
+    title: "Understand",
+    text:
+      "We begin with the facts: your existing arrangements, obligations and the question you need answered.",
+  },
+  {
+    number: "02",
+    title: "Advise",
+    text:
+      "You receive clear advice shaped around your circumstances, with practical decisions and next steps.",
+  },
+  {
+    number: "03",
+    title: "Support",
+    text:
+      "Where ongoing work is needed, we help keep the accounting, tax or trust records moving and in order.",
+  },
+];
 ---
 
 <BaseLayout title={site.name} description={site.description}>
-  <!-- HERO: the first viewport must say who this business is and what it does.
-       On build day, replace the copy and consider a real photo/video of the
-       actual work — not stock. -->
-  <section class="hero">
-    <div class="container">
-      <span class="overline">{site.address.locality} · {site.areas[0]}</span>
-      <h1>{site.tagline}</h1>
-      <p class="lead">
-        Two or three sentences that a first-time visitor needs: what you do, who you do
-        it for, and why they can trust you. Specific beats clever.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn--primary" href={withBase(site.primaryCta.href)}>{site.primaryCta.label}</a>
-        <a class="btn btn--ghost" href={withBase("/services/")}>View services</a>
+  <section class="home-hero">
+    <div class="home-hero__copy">
+      <div class="home-hero__inner">
+        <span class="overline">Trust · Tax · Accounting — New Zealand</span>
+        <h1>Professional accounting, tax &amp; trust management</h1>
+        <p>
+          Practical support for New Zealand families, business owners, trustees and
+          organisations.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href={withBase("/contact/")}>
+            Get in touch
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
+          <a class="btn btn--outline-light" href="#services">Explore our services</a>
+        </div>
+        <a class="hero-marker" href="#introduction">
+          <span></span>
+          Established New Zealand
+          <ArrowDown size={13} aria-hidden="true" />
+        </a>
       </div>
+    </div>
+
+    <div class="home-hero__photo">
+      <Image
+        src={heroPhoto}
+        alt="Pōhutukawa trees beside the water at French Bay, Auckland"
+        widths={[720, 1000, 1440]}
+        sizes="(max-width: 900px) 100vw, 46vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="home-hero__wash"></div>
+      <aside class="practice-register" aria-label="Areas of practice">
+        <header>
+          <span>Bennett Advisory</span>
+          <span>Practice register</span>
+        </header>
+        <h2>Areas of practice</h2>
+        <ol>
+          {services.slice(0, 5).map((service) => (
+            <li>
+              <span>{service.number}</span>
+              <a href={`#${service.id}`}>{service.name}</a>
+            </li>
+          ))}
+        </ol>
+      </aside>
     </div>
   </section>
 
-  <!-- SERVICES: rendered from src/data/services.ts -->
-  <section class="section section--surface">
+  <section class="introduction section" id="introduction">
+    <div class="container introduction__inner">
+      <span class="section-index">01 / Overview</span>
+      <p class="eyebrow">Accounting · Tax · Trusts</p>
+      <h2>Clear advice, careful administration and an experienced team.</h2>
+      <p class="lead">
+        Bennett Advisory brings accounting, tax and trust work together in one
+        practice. The aim is straightforward: understand the position, explain the
+        options and help keep the details in order.
+      </p>
+    </div>
+  </section>
+
+  <section class="services-section section" id="services">
     <div class="container">
-      <div class="section-heading">
-        <span class="overline">What we do</span>
-        <h2>Services</h2>
-        <p class="lead">One sentence framing the service range.</p>
+      <div class="section-heading section-heading--spread">
+        <div>
+          <span class="section-index">02 / Services</span>
+          <h2>What we can help with</h2>
+        </div>
+        <p>
+          Services stay together here so the full relationship between trust,
+          accounting and tax work is easy to understand.
+        </p>
       </div>
-      <div class="grid">
-        {services.map((service) => (
-          <ServiceCard service={service} />
+
+      <div class="service-ledger">
+        {serviceGroups.map((group, groupIndex) => (
+          <section class="service-folder" aria-labelledby={`group-${groupIndex}`}>
+            <h3 class="folder-tab" id={`group-${groupIndex}`}>{group}</h3>
+            <div class="service-folder__body">
+              {services.filter((service) => service.group === group).map((service) => (
+                <ServiceCard service={service} />
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- PROOF / WHY US: replace with the business's real proof — years operating,
-       real numbers, guarantees, credentials, named locations. No fake metrics. -->
-  <section class="section">
-    <div class="container split">
-      <div>
-        <span class="overline">Why choose us</span>
-        <h2>Real reasons customers pick this business</h2>
-        <p class="lead">
-          A short paragraph of genuine background: how long they've operated, who runs
-          it, what they're known for locally.
+  <section class="process-section section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-index">03 / How we help</span>
+        <p class="eyebrow">A considered process</p>
+        <h2>From the question to a clear next step</h2>
+      </div>
+      <ol class="process-list">
+        {steps.map((step) => (
+          <li>
+            <span class="process-number">{step.number}</span>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="experience-band">
+    <div class="container experience-grid">
+      <div class="experience-intro">
+        <span class="section-index">04 / Experience</span>
+        <p class="eyebrow">Depth across the practice</p>
+        <h2>Specialist work, grounded in long experience.</h2>
+        <p>
+          Bennett Advisory's team combines trust administration, accounting and tax
+          experience, keeping advice and ongoing administration connected across the
+          practice.
         </p>
       </div>
-      <ul class="checklist">
-        <li>A specific, verifiable claim (e.g. "Serving X since 2008")</li>
-        <li>A concrete guarantee or standard of work</li>
-        <li>A real credential, membership, or insurance detail</li>
-        <li>Something customers repeatedly praise in reviews</li>
-      </ul>
+      <dl class="experience-facts">
+        <div>
+          <dt>25+</dt>
+          <dd>Years' experience — Melanie Bennett</dd>
+        </div>
+        <div>
+          <dt>15+</dt>
+          <dd>Years in trusts and estates — Sarah Clay</dd>
+        </div>
+        <div>
+          <dt>30+</dt>
+          <dd>Years in management and financial accounting — Glenn Schussler</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="team-preview section">
+    <div class="container">
+      <div class="section-heading section-heading--spread">
+        <div>
+          <span class="section-index">05 / People</span>
+          <p class="eyebrow">The team</p>
+          <h2>Advice from people who know the detail</h2>
+        </div>
+        <a class="text-link" href={withBase("/about/")}>
+          Meet all four team members
+          <ArrowRight size={15} aria-hidden="true" />
+        </a>
+      </div>
+      <div class="team-preview__grid">
+        {team.slice(0, 2).map((member, index) => (
+          <TeamMember member={member} index={index} compact />
+        ))}
+      </div>
     </div>
   </section>
 

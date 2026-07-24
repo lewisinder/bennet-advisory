@@ -13,13 +13,16 @@ const isGithubPages = process.env.DEPLOY_TARGET === "github-pages";
 const [owner, repo] = (process.env.GITHUB_REPOSITORY ?? "owner/repo").split("/");
 
 export default defineConfig({
-  site: isGithubPages ? `https://${owner}.github.io` : "https://www.example.com",
+  site: isGithubPages ? `https://${owner}.github.io` : "https://bennettadvisory.co.nz",
   base: isGithubPages ? `/${repo}/` : "/",
   output: "static",
   integrations: [
     sitemap({
       // Utility pages stay out of the sitemap.
-      filter: (page) => !page.includes("/design-system") && !page.includes("/thank-you"),
+      filter: (page) =>
+        !page.includes("/design-system") &&
+        !page.includes("/thank-you") &&
+        !page.endsWith("/404"),
     }),
   ],
   // Astro can ignore a harness-injected PORT; this keeps in-editor previews working.
