@@ -15,6 +15,8 @@ private verbatim workbook transcript at
   It should not appear in the main nav.
 - Visual source of truth: `../../Bennett Advisory Homepage Design/`. Port its
   visual system and layout patterns; do not use its placeholder content as fact.
+- Approved service-register treatment: navy folder tabs, white document faces,
+  fine internal rules, and no enclosing outer perimeter or document shadow.
 - Content source of truth:
   `../../Bennett_Advisory_Website_Workbook_Agent_Source.md`, checked against the
   original PDF when needed.
