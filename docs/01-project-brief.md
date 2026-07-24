@@ -57,6 +57,12 @@ as the accessible source for workbook wording, and use
 layout or transcription questions. The transcript deliberately preserves examples,
 legacy copy, and typos; its preface explains how to interpret them.
 
+On 24 July 2026, the client confirmed that every populated workbook response box
+is approved source content, including responses under `Example only` labels.
+Those labels describe the original prompt, not the completed response's approval
+status. Preserve negative answers and content decisions as requirements; do not
+turn obvious unfilled placeholders into factual claims.
+
 The React/Vite prototype is visual-only. It contains placeholder team identities,
 biographies, statistics, claims, footer links, and dates. None of those may enter
 the Astro site without support in the private transcript or explicit approval.
@@ -72,12 +78,11 @@ commits, generated pages, logs, or public responses.
   utility route before launch.
 - Confirm image rights and the current right to display STEP, CA ANZ, and Xero
   badges.
-- Confirm whether the French Bay map should be embedded or linked.
 - Confirm the enquiry form provider and test destination.
-- Confirm that all four team members and experience figures remain current.
 - Confirm any prototype service descriptions that go beyond the workbook wording.
 
-The first-pass Contact page uses a privacy-light external Google Maps link rather
-than an embed, and opens a pre-addressed email from the enquiry form. These are
-review defaults only; confirm the production map and form-delivery decisions
-before launch.
+The approved workbook response calls for an embedded map centred on French Bay
+Yacht Club. The first-pass Contact page currently uses a privacy-light external
+Google Maps link, so the implementation must be reconciled with that approved
+response before launch. It also opens a pre-addressed email from the enquiry form;
+confirm the production form-delivery provider and test destination.

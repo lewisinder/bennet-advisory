@@ -87,8 +87,10 @@ fallback, and installation instructions.
 Use sources in this order:
 
 1. `../Bennett_Advisory_Website_Workbook_Agent_Source.md` for verbatim workbook
-   wording and client inputs. Respect its labels: inherited current-site copy is
-   not automatically approved, and `Example only` text is not a verified claim.
+   wording and client inputs. The client has approved all populated response-box
+   text, including responses beneath `Example only` labels. Do not discard content
+   because of the original box label; follow the transcript's approval-override
+   instructions for placeholders, private details, and scope conflicts.
 2. `docs/01-project-brief.md` for the build-ready synthesis and explicit scope.
 3. `../Bennett Advisory Homepage Design/` for visual language, layout patterns,
    typography, colour, spacing, and motion only.
