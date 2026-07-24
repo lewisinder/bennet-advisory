@@ -1,0 +1,23 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.*
+!.env.example
+
+# private client source files (must remain outside the website repository)
+Bennett_Advisory_Website_Workbook*
+*Workbook_Agent_Source*
+
+# tooling / local config
+.claude/
+.netlify/
+.playwright-mcp/
+
+# macOS
+.DS_Store
