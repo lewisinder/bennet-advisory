@@ -3,11 +3,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import ServiceCard from "@/components/ServiceCard.astro";
 import ContactForm from "@/components/ContactForm.astro";
 import FaqItem from "@/components/FaqItem.astro";
+import CredentialRegister from "@/components/CredentialRegister.astro";
+import PersonProfile from "@/components/PersonProfile.astro";
 import { services } from "@/data/services";
+import { team } from "@/data/team";
 
 const colours = [
   ["Navy", "--navy", "#1B3252", "Authority, hero panels and dark bands"],
-  ["Teal", "--teal", "#2BACD6", "Actions, indices and active details"],
+  ["Teal", "--teal", "#2BACD6", "Actions, labels and active details"],
   ["Paper", "--paper", "#F5F3EE", "Primary editorial canvas"],
   ["Paper dark", "--paper-dark", "#EAE6DF", "Folder layers and quiet contrast"],
   ["White", "--white", "#FFFFFF", "Navigation and document surfaces"],
@@ -17,7 +20,7 @@ const colours = [
 const typeRoles = [
   ["Display", "Libre Baskerville", "Professional accounting, tax & trust management"],
   ["Body", "Plus Jakarta Sans", "Clear advice should also be clearly presented."],
-  ["Utility", "DM Mono", "05 / PEOPLE — BENNETT ADVISORY"],
+  ["Utility", "DM Mono", "PEOPLE — BENNETT ADVISORY"],
 ];
 ---
 
@@ -29,8 +32,7 @@ const typeRoles = [
   <section class="page-hero page-hero--dark">
     <div class="container page-hero__grid">
       <div>
-        <span class="section-index">Internal / Design system</span>
-        <p class="eyebrow">Bennett Advisory</p>
+        <p class="eyebrow">Bennett Advisory · Internal design system</p>
         <h1>The advisory register</h1>
       </div>
       <p class="lead">
@@ -43,18 +45,17 @@ const typeRoles = [
   <section class="section">
     <div class="container">
       <div class="section-heading">
-        <span class="section-index">01 / Signature</span>
         <h2>Document discipline, with a sense of place</h2>
         <p>
           The design borrows from orderly trust files and advisory registers: square
-          folders, numbered entries, fine rules and paper layers. French Bay imagery
+          folders, labelled entries, fine rules and paper layers. French Bay imagery
           keeps the practice rooted in its real Auckland setting.
         </p>
       </div>
       <div class="principle-grid">
-        <article><span>01</span><h3>Quiet authority</h3><p>Navy carries weight; teal is reserved for action and navigation.</p></article>
-        <article><span>02</span><h3>Editorial order</h3><p>Numbers, rules and tabs make long information easy to scan.</p></article>
-        <article><span>03</span><h3>White files</h3><p>Service information sits on a crisp white document face, with warm paper reserved for the surrounding desk and backing layer.</p></article>
+        <article><h3>Quiet authority</h3><p>Navy carries weight; teal is reserved for action and navigation.</p></article>
+        <article><h3>Editorial order</h3><p>Rules, labels and tabs make long information easy to scan.</p></article>
+        <article><h3>White files</h3><p>Service information sits on a crisp white document face, with warm paper reserved for the surrounding desk and backing layer.</p></article>
       </div>
     </div>
   </section>
@@ -62,7 +63,6 @@ const typeRoles = [
   <section class="section section--paper-dark">
     <div class="container">
       <div class="section-heading">
-        <span class="section-index">02 / Tokens</span>
         <h2>Colour roles</h2>
       </div>
       <div class="swatch-grid">
@@ -83,7 +83,6 @@ const typeRoles = [
   <section class="section">
     <div class="container">
       <div class="section-heading">
-        <span class="section-index">03 / Typography</span>
         <h2>Three deliberate voices</h2>
       </div>
       <div class="type-specimens">
@@ -100,7 +99,6 @@ const typeRoles = [
   <section class="section section--paper-dark" id="service-register">
     <div class="container">
       <div class="section-heading">
-        <span class="section-index">04 / Components</span>
         <h2>Service register and actions</h2>
         <p>
           Navy tabs identify each service family. The documents remain white and
@@ -123,6 +121,24 @@ const typeRoles = [
         <a class="btn btn--secondary" href="#buttons">Secondary action</a>
         <a class="text-link" href="#buttons">Editorial text link</a>
       </div>
+      <div class="ds-component-divider" id="credentials">
+        <span class="eyebrow">Credential register</span>
+        <h3>Professional standing, without a generic logo strip</h3>
+        <p>
+          Marks sit on a white document surface with equal visual weight, clear
+          spacing and a short explanation of why each credential matters.
+        </p>
+      </div>
+      <CredentialRegister showLaunchNote />
+      <div class="ds-component-divider" id="person-profile">
+        <span class="eyebrow">Person profile</span>
+        <h3>Detailed professional biography</h3>
+        <p>
+          A portrait-led document layout gives long professional biographies room
+          to breathe, with source-backed facts and personal context kept distinct.
+        </p>
+      </div>
+      <PersonProfile member={team[0]} />
     </div>
   </section>
 
@@ -130,14 +146,12 @@ const typeRoles = [
     <div class="container split">
       <div>
         <div class="section-heading">
-          <span class="section-index">05 / Form</span>
           <h2>Enquiry fields</h2>
         </div>
         <ContactForm />
       </div>
       <div>
         <div class="section-heading">
-          <span class="section-index">06 / Disclosure</span>
           <h2>Native interaction</h2>
         </div>
         <FaqItem

@@ -1,100 +1,141 @@
 ---
+import { Image } from "astro:assets";
+import { ArrowRight, MapPin } from "@lucide/astro";
+import locationPhoto from "@/assets/french-bay-yacht-club.jpeg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PersonProfile from "@/components/PersonProfile.astro";
 import TeamMember from "@/components/TeamMember.astro";
 import CtaBand from "@/components/CtaBand.astro";
+import { about } from "@/data/about";
 import { site } from "@/data/site";
 import { team } from "@/data/team";
+import { withBase } from "@/lib/base";
+
+const featuredTeam = team.filter((member) => member.image);
+const widerTeam = team.filter((member) => !member.image);
 ---
 
-<BaseLayout
-  title="About"
-  description="Meet Bennett Advisory's experienced Auckland team providing practical accounting, tax and trust support to New Zealand families and business owners nationwide."
->
+<BaseLayout title={about.seo.title} description={about.seo.description}>
   <section class="page-hero page-hero--dark">
     <div class="container page-hero__grid">
       <div>
-        <span class="section-index">About / Bennett Advisory</span>
-        <p class="eyebrow">The practice</p>
-        <h1>Experience, judgement and careful attention to detail.</h1>
+        <p class="eyebrow">{about.hero.eyebrow}</p>
+        <h1>{about.hero.heading}</h1>
       </div>
-      <p class="lead">
-        A four-person team bringing accounting, tax and trust experience together
-        from French Bay in Titirangi.
-      </p>
+      <p class="lead">{about.hero.text}</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container page-intro-grid">
       <aside class="page-intro-grid__aside">
-        <span class="section-index">01 / About the firm</span>
-        <p>{site.address.venue}<br />{site.address.locality}, {site.address.region}</p>
+        <p class="eyebrow">The practice</p>
+        <p>
+          {site.address.venue}<br />
+          {site.address.locality}, {site.address.region}
+        </p>
       </aside>
       <div class="page-copy">
-        <p>
-          Bennett Advisory supports New Zealand families, business owners, trustees
-          and organisations with accounting, tax and trust work.
-        </p>
-        <p>
-          The practice is led by Melanie Bennett, whose career spans more than 25
-          years. Her experience includes more than a decade with Big Four firms,
-          progressing to Senior Manager, and leadership of Guardian Trust's corporate
-          tax function.
-        </p>
-        <p>
-          Today, Melanie works alongside specialists in trust administration,
-          management and financial accounting, and experienced accounting support.
-          The team focuses on understanding each matter, communicating clearly and
-          keeping the records behind the advice in good order.
-        </p>
+        <h2>{about.introduction.heading}</h2>
+        {about.introduction.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
       </div>
     </div>
   </section>
 
-  <section class="section section--paper-dark">
+  <section class="profile-section section section--paper-dark">
     <div class="container">
-      <div class="section-heading">
-        <span class="section-index">02 / Working approach</span>
-        <p class="eyebrow">How the practice works</p>
-        <h2>Advice should make the next decision clearer.</h2>
+      <div class="section-heading section-heading--spread">
+        <div>
+          <p class="eyebrow">The people behind the advice</p>
+          <h2>Specialist experience, brought together</h2>
+        </div>
+        <p>
+          Bennett Advisory’s work is led by direct experience across accounting,
+          tax, trusts, estates and ongoing administration.
+        </p>
       </div>
-      <div class="principle-grid">
-        <article>
-          <span>01</span>
-          <h3>Understand first</h3>
-          <p>The starting point is your real position, not a generic template.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Explain plainly</h3>
-          <p>Technical work is translated into useful choices and practical next steps.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Keep good records</h3>
-          <p>Careful administration supports sound decisions over time.</p>
-        </article>
+      <div class="profile-register">
+        {featuredTeam.map((member, index) => (
+          <PersonProfile member={member} reverse={index % 2 === 1} />
+        ))}
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-heading">
-        <span class="section-index">03 / The team</span>
-        <p class="eyebrow">Four complementary roles</p>
-        <h2>Meet Bennett Advisory</h2>
+      <div class="section-heading section-heading--spread">
+        <div>
+          <p class="eyebrow">Experience across the practice</p>
+          <h2>Professional backgrounds that support the work</h2>
+        </div>
+        <p>
+          The team’s experience covers the technical advice and careful
+          administration behind each client relationship.
+        </p>
       </div>
-      <div class="team-roster">
-        {team.map((member, index) => (
-          <TeamMember member={member} index={index} />
+      <ul class="detail-list about-expertise">
+        {about.expertise.map((item) => (
+          <li>
+            <strong>{item.title}</strong>
+            <span>{item.text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="team-preview section">
+    <div class="container">
+      <div class="section-heading section-heading--spread">
+        <div>
+          <p class="eyebrow">The wider team</p>
+          <h2>Accounting and administration support</h2>
+        </div>
+        <p>
+          Glenn and Helen bring substantial accounting and administration
+          experience to the practice.
+        </p>
+      </div>
+      <div class="team-preview__grid">
+        {widerTeam.map((member) => (
+          <TeamMember member={member} compact />
         ))}
       </div>
     </div>
   </section>
 
+  <section class="location-section section">
+    <div class="container">
+      <div class="location-card">
+        <div class="location-card__copy">
+          <p class="eyebrow">French Bay · Titirangi</p>
+          <h2>Based in Auckland, supporting clients across New Zealand</h2>
+          <p>
+            Bennett Advisory is based at {site.address.venue}, {site.address.locality},
+            {" "}{site.address.region}.
+          </p>
+          <a class="text-link text-link--light" href={withBase("/contact/")}>
+            <MapPin size={15} aria-hidden="true" />
+            View contact details
+            <ArrowRight size={15} aria-hidden="true" />
+          </a>
+        </div>
+        <div class="location-card__image">
+          <Image
+            src={locationPhoto}
+            alt="French Bay Yacht Club beside the Manukau Harbour"
+            widths={[720, 1000, 1440]}
+            sizes="(max-width: 820px) 100vw, 50vw"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <CtaBand
-    heading="Looking for a clearer view of the next step?"
-    text="Tell us a little about the accounting, tax or trust question you are working through."
+    heading="Need clarity around your accounting, trust or tax position?"
+    text="Start with a straightforward conversation."
   />
 </BaseLayout>

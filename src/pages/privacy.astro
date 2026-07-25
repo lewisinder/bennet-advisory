@@ -1,0 +1,108 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/data/site";
+import { privacySections } from "@/data/privacy";
+import { withBase } from "@/lib/base";
+
+const description =
+  "Bennett Advisory's privacy policy explains how we collect, use, store and protect personal information under New Zealand's Privacy Act 2020.";
+---
+
+<BaseLayout title="Privacy policy" description={description}>
+  <section class="page-hero page-hero--dark">
+    <div class="container page-hero__grid">
+      <div>
+        <p class="eyebrow">Bennett Advisory</p>
+        <h1>Privacy policy</h1>
+      </div>
+      <p class="lead">
+        How Bennett Advisory collects, uses, stores and protects personal information
+        under New Zealand's Privacy Act 2020.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container page-intro-grid">
+      <aside class="page-intro-grid__aside">
+        <p class="eyebrow">Policy record</p>
+        <p>
+          Bennett Advisory Ltd<br />
+          Last updated 25 July 2026
+        </p>
+      </aside>
+      <div class="page-copy">
+        <p>
+          This privacy policy explains how Bennett Advisory Ltd collects, uses, stores
+          and protects personal information when you use this website or contact us.
+        </p>
+        <p>
+          We handle personal information in accordance with the Privacy Act 2020 and
+          the information privacy principles that apply in New Zealand.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {privacySections.map((section, index) => (
+    <section class:list={["section", index % 2 === 1 && "section--paper-dark"]}>
+      <div class="container split">
+        <div class="section-heading">
+          <span class="section-index">{section.number} / Privacy</span>
+          <h2>{section.title}</h2>
+        </div>
+        <div class="page-copy">
+          {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          {section.items && (
+            <ul>
+              {section.items.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section--paper-dark">
+    <div class="container split">
+      <div class="section-heading">
+        <span class="section-index">10 / Contact</span>
+        <h2>Privacy enquiries</h2>
+      </div>
+      <div class="page-copy">
+        <p>
+          To request access to or correction of personal information, or to raise a
+          privacy concern, contact the Director at:
+        </p>
+        <ul class="detail-list">
+          <li>
+            <strong>Email</strong>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </li>
+          <li>
+            <strong>Phone</strong>
+            <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+          </li>
+          <li>
+            <strong>Address</strong>
+            <span>{site.privacyAddress}</span>
+          </li>
+        </ul>
+        <p>
+          If we cannot resolve your concern, you can contact the
+          <a
+            class="text-link"
+            href="https://www.privacy.org.nz/your-rights/your-privacy-rights/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Office of the Privacy Commissioner
+          </a>.
+        </p>
+        <p>
+          <a class="text-link" href={withBase("/contact/")}>Return to contact</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import melanie from "@/assets/melanie-bennett.jpeg";
+import sarah from "@/assets/sarah-clay.jpg";
+import type { TeamMember } from "@/data/team";
+
+type Props = {
+  member: TeamMember;
+  reverse?: boolean;
+};
+
+const { member, reverse = false } = Astro.props;
+const portraits = { melanie, sarah };
+const portrait = member.image ? portraits[member.image] : undefined;
+---
+
+<article class:list={["person-profile", reverse && "person-profile--reverse"]}>
+  <div class="person-profile__media">
+    {portrait ? (
+      <Image
+        src={portrait}
+        alt={`Portrait of ${member.name}`}
+        widths={[520, 760, 1040]}
+        sizes="(max-width: 820px) 100vw, 42vw"
+        loading="lazy"
+      />
+    ) : (
+      <div class="team-member__initials" aria-hidden="true">
+        {member.name.split(" ").map((part) => part[0]).join("")}
+      </div>
+    )}
+  </div>
+  <div class="person-profile__copy">
+    <p class="eyebrow">{member.role} · {member.experience}</p>
+    <h2>{member.name}</h2>
+    <div class="person-profile__biography">
+      {(member.longBio ?? [member.bio]).map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    {member.facts && (
+      <ul class="person-profile__facts" aria-label={`${member.name} experience`}>
+        {member.facts.map((fact) => <li>{fact}</li>)}
+      </ul>
+    )}
+    {member.personal && (
+      <p class="person-profile__personal">
+        <strong>Outside the practice</strong>
+        {member.personal}
+      </p>
+    )}
+  </div>
+</article>

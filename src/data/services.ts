@@ -11,52 +11,52 @@ export const services: Service[] = [
   {
     id: "trust-establishment",
     number: "01",
-    name: "Trust establishment",
+    name: "Trust Establishment Services",
     summary:
-      "Support to establish a trust with a clear purpose, structure and record from the outset.",
+      "Setting up a properly structured trust to protect your assets.",
     details: [
-      "Purpose and structure",
-      "Establishment documentation",
-      "Initial trustee records",
+      "Trust structure",
+      "Asset protection",
+      "Establishment records",
     ],
     group: "Trusts",
   },
   {
     id: "trustee-services",
     number: "02",
-    name: "Trustee services",
+    name: "Trustee Services",
     summary:
-      "Independent professional support for trustees as they carry out their duties and make decisions.",
+      "Acting as an independent trustee to work with you to keep your trust compliant.",
     details: [
-      "Trustee obligations",
-      "Decision support",
-      "Governance records",
+      "Independent trustee",
+      "Ongoing compliance",
+      "Trustee records",
     ],
     group: "Trusts",
   },
   {
     id: "trust-administration",
     number: "03",
-    name: "Ongoing trust administration",
+    name: "Ongoing Trust Administration",
     summary:
-      "Practical support to keep resolutions, distributions and the trust's core records in order.",
+      "Accurate record-keeping and annual administration. We do not need to be a trustee to assist with your trust administration.",
     details: [
-      "Minutes and resolutions",
-      "Distribution records",
+      "Accurate record-keeping",
       "Annual administration",
+      "Trustee support",
     ],
     group: "Trusts",
   },
   {
     id: "trust-health-checks",
     number: "04",
-    name: "Trust health-check reviews",
+    name: "Trust “health-check” Reviews",
     summary:
-      "A structured review of an existing trust's purpose, records, administration and current needs.",
+      "Checking your trust documents against current legislation.",
     details: [
       "Document review",
-      "Administration review",
-      "Clear next steps",
+      "Legislative compliance",
+      "Required updates",
     ],
     group: "Trusts",
   },
@@ -65,27 +65,41 @@ export const services: Service[] = [
     number: "05",
     name: "Accounting and tax advice",
     summary:
-      "Clear accounting and tax support for individuals, companies, partnerships and trusts.",
+      "Accounting for small to medium businesses, individuals and trusts utilising the Xero platform by a Chartered Accountant.",
     details: [
       "Accounts and tax returns",
-      "Overseas income",
-      "Rental properties",
+      "Overseas investment income calculation",
+      "Rental property taxation",
     ],
     group: "Accounting & tax",
   },
   {
     id: "tax-structuring",
     number: "06",
-    name: "Specialist tax and structuring",
+    name: "Specialist tax and structuring advice",
     summary:
-      "Advice for business transactions, ownership structures and domestic or offshore tax questions.",
+      "We can assist you with structuring your personal and business affairs for appropriate protection, taxation and compliance.",
     details: [
-      "Business transactions",
-      "Domestic and offshore structures",
-      "Tax risk",
+      "Taxation on business transactions",
+      "Structuring for efficiency",
+      "Domestic and offshore structuring and restructuring",
+      "Tax risk review",
     ],
     group: "Accounting & tax",
   },
 ];
 
 export const serviceGroups = ["Trusts", "Accounting & tax"] as const;
+
+export const serviceGroupCopy: Record<(typeof serviceGroups)[number], string[]> = {
+  Trusts: [
+    "Are you concerned about the administration of your trust or want to discuss how a trust could assist you in protecting your assets to provide for future generations?",
+    "Having a properly administered trust with accurate records is the backbone of ensuring your trust is protected from being “busted”.",
+    "At Bennett Advisory we are supported by cloud-based trust administration software backed by top New Zealand trust experts to ensure compliance with the trust legislation.",
+  ],
+  "Accounting & tax": [
+    "Accounting for small to medium businesses, individuals and trusts utilising the Xero platform by a Chartered Accountant.",
+    "Tax affects everyone and it is key with personal and business affairs to select an ownership model and structure that provides you with the appropriate protection, taxation and compliance.",
+    "At Bennett Advisory we can assist you with structuring your personal and business affairs.",
+  ],
+};

@@ -4,8 +4,8 @@ import melanie from "@/assets/melanie-bennett.jpeg";
 import sarah from "@/assets/sarah-clay.jpg";
 import type { TeamMember } from "@/data/team";
 
-type Props = { member: TeamMember; index: number; compact?: boolean };
-const { member, index, compact = false } = Astro.props;
+type Props = { member: TeamMember; compact?: boolean };
+const { member, compact = false } = Astro.props;
 const portraits = { melanie, sarah };
 const portrait = member.image ? portraits[member.image] : undefined;
 const initials = member.name.split(" ").map((part) => part[0]).join("");
@@ -26,7 +26,6 @@ const initials = member.name.split(" ").map((part) => part[0]).join("");
     )}
   </div>
   <div class="team-member__copy">
-    <span class="service-number">{String(index + 1).padStart(2, "0")}</span>
     <p class="team-member__role">{member.role} · {member.experience}</p>
     <h3>{member.name}</h3>
     <p>{member.bio}</p>
