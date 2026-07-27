@@ -409,10 +409,9 @@ p {
 /* Home hero */
 .home-hero {
   display: grid;
-  height: calc(100svh - 76px);
-  min-height: 640px;
+  min-height: clamp(700px, calc(100svh - 76px), 820px);
   grid-template-columns: 56% 44%;
-  grid-template-rows: minmax(0, 1fr);
+  grid-template-rows: minmax(700px, auto);
   overflow: hidden;
   background: var(--navy);
 }
