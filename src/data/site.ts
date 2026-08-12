@@ -38,7 +38,6 @@ export const site = {
   ] satisfies NavItem[],
   legal: [
     { label: "Privacy policy", href: "/privacy/" },
-    { label: "Terms of use", href: "/terms/" },
   ] satisfies NavItem[],
 
   social: [
