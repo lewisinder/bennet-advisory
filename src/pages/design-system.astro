@@ -5,6 +5,7 @@ import ContactForm from "@/components/ContactForm.astro";
 import FaqItem from "@/components/FaqItem.astro";
 import CredentialRegister from "@/components/CredentialRegister.astro";
 import PersonProfile from "@/components/PersonProfile.astro";
+import ExternalLinksRegister from "@/components/ExternalLinksRegister.astro";
 import { services } from "@/data/services";
 import { team } from "@/data/team";
 
@@ -143,6 +144,15 @@ const typeRoles = [
         </p>
       </div>
       <PersonProfile member={team[0]} />
+      <div class="ds-component-divider" id="external-links">
+        <span class="eyebrow">External destinations</span>
+        <h3>Connect and review register</h3>
+        <p>
+          Follow and review actions use the same ruled, labelled treatment as the
+          practice registers, with recognisable icons and clear external-link behaviour.
+        </p>
+      </div>
+      <ExternalLinksRegister />
     </div>
   </section>
 

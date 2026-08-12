@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "@/assets/bennett-advisory-light.png";
+import ExternalLinksRegister from "@/components/ExternalLinksRegister.astro";
 import { site } from "@/data/site";
 import { withBase } from "@/lib/base";
 
@@ -42,6 +43,14 @@ const year = new Date().getFullYear();
         ))}
       </ul>
     </div>
+  </div>
+
+  <div class="container footer-connect">
+    <div class="footer-connect__intro">
+      <p class="footer-label">Connect &amp; review</p>
+      <p>Follow Bennett Advisory or share your experience with the practice.</p>
+    </div>
+    <ExternalLinksRegister theme="dark" />
   </div>
 
   <div class="container footer-bottom">

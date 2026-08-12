@@ -41,5 +41,14 @@ export const site = {
     { label: "Terms of use", href: "/terms/" },
   ] satisfies NavItem[],
 
-  social: [] as { label: string; href: string }[],
+  social: [
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/bennettadvisory",
+    },
+  ],
+  googleReview: {
+    label: "Google Review",
+    href: "https://g.page/r/CcHJRJWzjWI3EBM/review",
+  },
 };
