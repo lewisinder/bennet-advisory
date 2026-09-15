@@ -8,6 +8,7 @@ export const site = {
   url: "https://bennettadvisory.co.nz",
   description:
     "Bennett Advisory provides accounting, tax and trust services for Auckland businesses, families and trustees, with support available across New Zealand.",
+  googleAnalyticsId: "G-FH9X8VJGCE",
 
   email: "melanie@bennettadvisory.co.nz",
   phone: "+6421707244",

@@ -23,6 +23,14 @@ const { title, description, schemas = [] } = Astro.props;
 // the real site. Canonical still points at the production domain.
 const isPreviewBuild = process.env.DEPLOY_TARGET === "github-pages";
 const robots = isPreviewBuild ? "noindex, nofollow" : (Astro.props.robots ?? "index, follow");
+const shouldLoadAnalytics = import.meta.env.PROD && !isPreviewBuild;
+const googleAnalyticsConfig = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag("js", new Date());
+  gtag("config", ${JSON.stringify(site.googleAnalyticsId)});
+`;
 
 const pathname = pathnameWithoutBase(Astro.url.pathname);
 const canonical = `${site.url}${pathname === "/" ? "/" : `${pathname}/`}`;
@@ -50,6 +58,16 @@ const allSchemas = [localBusinessSchema(), ...schemas];
     {allSchemas.map((schema) => (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
+    {shouldLoadAnalytics && (
+      <>
+        <script
+          is:inline
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${site.googleAnalyticsId}`}
+        ></script>
+        <script is:inline set:html={googleAnalyticsConfig}></script>
+      </>
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
