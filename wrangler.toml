@@ -1,11 +1,24 @@
 # Cloudflare Workers Static Assets configuration.
-# This is a fully static Astro site: no Worker script or server-side rendering is
-# needed. Cloudflare serves the built `dist/` directory directly at the edge.
+# Astro generates the pages in dist. A small Worker redirects www and keeps
+# temporary review addresses out of search results.
 #
 # When creating the Worker in Cloudflare, use this exact name.
 name = "bennett-advisory"
+main = "worker/index.js"
 compatibility_date = "2026-07-13"
+workers_dev = true
+preview_urls = true
+
+[[routes]]
+pattern = "bennettadvisory.co.nz"
+custom_domain = true
+
+[[routes]]
+pattern = "www.bennettadvisory.co.nz"
+custom_domain = true
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+run_worker_first = true
 not_found_handling = "404-page"

@@ -1,7 +1,9 @@
 # Ship Runbook - GitHub to Cloudflare
 
-Run this only after the Home, About, and Contact pages are approved and the
-TinaCMS hosting decision in `05-add-a-cms-later.md` has been made.
+The client approved a static launch on 11 November 2026, with TinaCMS deferred.
+For this release, use the existing Workers configuration and the status recorded
+in `07-production-handover.md`. The CMS-specific steps below apply when Tina is
+implemented later.
 
 ## 0. Preconditions
 
@@ -13,7 +15,8 @@ TinaCMS hosting decision in `05-add-a-cms-later.md` has been made.
   form of `bennettadvisory.co.nz`.
 - The privacy-policy decision and wording have been resolved.
 - Rights/status have been confirmed for every photograph and accreditation badge.
-- TinaCMS editing works locally and on a non-production branch.
+- If TinaCMS is included in the release, editing works locally and on a
+  non-production branch.
 
 ## 1. GitHub
 
