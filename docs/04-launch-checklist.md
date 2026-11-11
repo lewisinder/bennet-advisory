@@ -7,7 +7,8 @@ most of it — paste this file and ask it to check everything and report back.
 
 - [ ] No placeholder text anywhere ("Business Name", "Service One", "Town or city",
       example.com, 021 000 0000…). Search the whole `src/` folder to be sure.
-- [ ] Main navigation contains only Home, About, and Contact.
+- [ ] Internal navigation contains Home, About, and Contact, plus the approved
+      external Client portal link (opens in a new tab).
 - [ ] No public service index or service-detail routes are present in the build or
       sitemap; approved service summaries appear on Home.
 - [ ] Phone number and email are correct and clickable (`tel:` / `mailto:` links).
@@ -17,7 +18,7 @@ most of it — paste this file and ask it to check everything and report back.
 - [ ] None of the prototype-only proof claims ("150+ trusts", "100% independent",
       or "25+ years combined") appear.
 - [ ] Legal name and service areas in the footer are right.
-- [ ] Favicon replaced with the client's mark (`public/assets/favicon.svg`).
+- [ ] Favicon uses the client's mark (`public/assets/bennet-advisory-favicon.png`).
 - [ ] The AI-watermarked `20251207_122110_1__1_.jpg` is not used.
 - [ ] Rights/status are confirmed for all photos and STEP, CA ANZ, or Xero badges.
 - [ ] Privacy-policy wording and route have been approved before the form goes live.
@@ -26,7 +27,11 @@ most of it — paste this file and ask it to check everything and report back.
 
 - [ ] Production domain set identically in `astro.config.mjs` (`site`) and
       `src/data/site.ts` (`url`).
-- [ ] Every page has a unique title and a 150–160 character meta description.
+- [ ] Every indexable page has a unique title and a 150–160 character meta description.
+- [ ] Each public page has one H1, followed by a logical H2/H3/H4 hierarchy.
+      Heading levels must not be used just to choose a visual font size.
+- [ ] Canonicals, social-sharing images and business structured data use the correct
+      production domain; utility and preview pages remain noindex.
 - [ ] `https://<domain>/robots.txt` loads and points to the sitemap.
 - [ ] `https://<domain>/sitemap-index.xml` loads and lists only real pages
       (no design-system, admin, thank-you, service-detail, or preview routes).
@@ -38,13 +43,15 @@ most of it — paste this file and ask it to check everything and report back.
 
 ## Forms
 
-- [ ] Web3Forms access key created with the **client's** email and set in
-      `src/data/site.ts` (no "REPLACE_WITH" placeholder left).
+- [ ] Web3Forms access key created with the **client's** email and supplied as
+      `PUBLIC_WEB3FORMS_ACCESS_KEY` at build time (no placeholder left).
 - [ ] Test enquiry submitted on the **live** site → arrives in the client's inbox
       (first one may land in spam — mark it "not spam").
 - [ ] Thank-you page shows after submitting.
 
 ## TinaCMS
+
+Deferred for the approved static launch; these checks apply when CMS work begins.
 
 - [ ] The selected Cloudflare hosting path matches
       `05-add-a-cms-later.md` (Workers for full Astro visual editing, or a proven
@@ -74,4 +81,5 @@ most of it — paste this file and ask it to check everything and report back.
 - [ ] Client has the live URL and knows enquiries arrive by email.
 - [ ] You have noted the GitHub repo, production branch, Cloudflare project,
       canonical domain, and Pages-versus-Workers decision in your records.
-- [ ] Client editors have TinaCMS access and understand the review/publish flow.
+- [ ] When TinaCMS is implemented, client editors have access and understand the
+      review/publish flow.

@@ -9,11 +9,14 @@ const accessKey = process.env.DEPLOY_TARGET === "cloudflare-preview"
 
 <form
   class="form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
   data-enquiry-form
   data-form-ready={accessKey ? "true" : "false"}
   data-success-url={withBase("/thank-you/")}
 >
   {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
+  <input type="hidden" name="redirect" value={new URL(withBase("/thank-you/"), Astro.site ?? "https://bennettadvisory.co.nz").href} />
   <input type="hidden" name="subject" value="New Bennett Advisory website enquiry" />
   <input type="hidden" name="from_name" value="Bennett Advisory website" />
   <input
@@ -73,13 +76,16 @@ const accessKey = process.env.DEPLOY_TARGET === "cloudflare-preview"
       if (status) status.textContent = "Sending your enquiry…";
 
       try {
+        const data = new FormData(form);
+        // JavaScript handles the redirect after confirming a successful response.
+        data.delete("redirect");
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+          body: JSON.stringify(Object.fromEntries(data)),
         });
         const result = await response.json();
 

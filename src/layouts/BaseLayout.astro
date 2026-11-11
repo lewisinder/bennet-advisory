@@ -1,9 +1,12 @@
 ---
 import "../styles/global.css";
+import { getImage } from "astro:assets";
+import sharePhoto from "@/assets/french-bay-waterfront.jpg";
+import logo from "@/assets/bennett-advisory-logo.png";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { site } from "@/data/site";
-import { localBusinessSchema } from "@/lib/seo";
+import { localBusinessSchema, websiteSchema } from "@/lib/seo";
 import { withBase, pathnameWithoutBase } from "@/lib/base";
 
 // Every page renders through this layout, which owns the whole <head>:
@@ -43,14 +46,27 @@ const googleAnalyticsConfig = `
 const pathname = pathnameWithoutBase(Astro.url.pathname);
 const canonical = `${site.url}${pathname === "/" ? "/" : `${pathname}/`}`;
 const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
-const allSchemas = [localBusinessSchema(), ...schemas];
+const [shareImage, logoImage] = await Promise.all([
+  getImage({ src: sharePhoto, width: 1200, height: 630, fit: "cover", format: "jpg" }),
+  getImage({ src: logo, width: 360, format: "png" }),
+]);
+const shareImageUrl = new URL(shareImage.src, Astro.site ?? site.url).href;
+const logoImageUrl = new URL(logoImage.src, Astro.site ?? site.url).href;
+const allSchemas = [
+  localBusinessSchema({ logo: logoImageUrl, image: shareImageUrl }),
+  websiteSchema(),
+  ...schemas,
+];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-NZ">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href={withBase("/assets/bennet-advisory-favicon.png")} type="image/png" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -61,8 +77,17 @@ const allSchemas = [localBusinessSchema(), ...schemas];
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_NZ" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="French Bay Yacht Club on the waterfront in Titirangi, Auckland — home to Bennett Advisory" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImageUrl} />
+    <meta name="twitter:image:alt" content="French Bay Yacht Club on the waterfront in Titirangi, Auckland" />
     {allSchemas.map((schema) => (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}

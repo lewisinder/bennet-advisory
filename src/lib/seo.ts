@@ -5,13 +5,16 @@ import type { Faq } from "@/data/faqs";
 // LocalBusiness structured data (JSON-LD), rendered on every page by BaseLayout.
 // Google reads this to understand who the business is, where it operates,
 // and what it offers.
-export function localBusinessSchema() {
+export function localBusinessSchema(assets: { logo: string; image: string }) {
   return {
     "@context": "https://schema.org",
-    "@type": ["ProfessionalService", "AccountingService"],
+    "@type": "AccountingService",
     "@id": `${site.url}/#localbusiness`,
     name: site.name,
     legalName: site.legalName,
+    description: site.description,
+    logo: assets.logo,
+    image: [assets.image],
     url: site.url,
     email: site.email,
     telephone: site.phone,
@@ -35,6 +38,18 @@ export function localBusinessSchema() {
       },
     })),
     ...(site.social.length > 0 ? { sameAs: site.social.map((s) => s.href) } : {}),
+  };
+}
+
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}/#website`,
+    url: `${site.url}/`,
+    name: site.name,
+    inLanguage: "en-NZ",
+    publisher: { "@id": `${site.url}/#localbusiness` },
   };
 }
 

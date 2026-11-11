@@ -1,20 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
-
 :root {
   --navy: #1b3252;
   --navy-deep: #142741;
   --teal: #2bacd6;
-  --teal-dark: #208fb4;
+  --teal-dark: #126b88;
   --paper: #f5f3ee;
   --paper-dark: #eae6df;
   --white: #ffffff;
   --ink: #16283f;
-  --muted: #657181;
+  --muted: #566273;
   --line: rgba(27, 50, 82, 0.18);
   --line-light: rgba(245, 243, 238, 0.22);
   --font-display: "Libre Baskerville", Georgia, serif;
   --font-body: "Plus Jakarta Sans", "Segoe UI", sans-serif;
   --font-mono: "DM Mono", ui-monospace, monospace;
+  --text-section-heading: clamp(2.15rem, 4.2vw, 3.65rem);
   --container: 1240px;
   --section-pad: clamp(72px, 9vw, 124px);
   --shadow-document: 0 22px 55px rgba(13, 29, 50, 0.2);
@@ -117,7 +116,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(2.15rem, 4.2vw, 3.65rem);
+  font-size: var(--text-section-heading);
 }
 
 h3 {
@@ -147,6 +146,14 @@ p {
 
 .overline,
 .eyebrow {
+  color: var(--teal-dark);
+}
+
+.home-hero .overline,
+.page-hero--dark .eyebrow,
+.experience-band .eyebrow,
+.client-portal .eyebrow,
+.location-card__copy .eyebrow {
   color: var(--teal);
 }
 
@@ -241,11 +248,12 @@ p {
 
 .btn--primary {
   background: var(--teal);
-  color: var(--white);
+  color: var(--navy);
 }
 
 .btn--primary:hover {
   background: var(--teal-dark);
+  color: var(--white);
 }
 
 .btn--secondary {
@@ -341,7 +349,7 @@ p {
 .site-nav ul {
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: 24px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -349,6 +357,9 @@ p {
 
 .site-nav a {
   position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: rgba(27, 50, 82, 0.72);
   font-size: 0.87rem;
   font-weight: 600;
@@ -360,7 +371,7 @@ p {
 .site-nav a::after {
   position: absolute;
   right: 0;
-  bottom: -9px;
+  bottom: 4px;
   left: 0;
   height: 1px;
   background: var(--teal);
@@ -378,6 +389,10 @@ p {
 .site-nav a:hover::after,
 .site-nav a[aria-current="page"]::after {
   transform: scaleX(1);
+}
+
+.site-nav__portal {
+  gap: 7px;
 }
 
 .header-inner > .btn--nav {
@@ -546,7 +561,7 @@ p {
   align-items: center;
   gap: 12px;
   margin-top: 68px;
-  color: rgba(245, 243, 238, 0.42);
+  color: rgba(245, 243, 238, 0.64);
   font-family: var(--font-mono);
   font-size: 0.64rem;
   letter-spacing: 0.17em;
@@ -1177,8 +1192,9 @@ p {
   padding: clamp(42px, 6vw, 76px);
 }
 
-.person-profile__copy h2 {
+.person-profile__name {
   margin-bottom: 30px;
+  font-size: var(--text-section-heading);
 }
 
 .person-profile__biography {
@@ -1716,7 +1732,7 @@ p {
   gap: 20px;
   padding-top: 25px;
   border-top: 1px solid var(--line-light);
-  color: rgba(245, 243, 238, 0.44);
+  color: rgba(245, 243, 238, 0.64);
   font-family: var(--font-mono);
   font-size: 0.63rem;
   letter-spacing: 0.05em;

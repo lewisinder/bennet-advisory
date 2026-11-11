@@ -38,8 +38,9 @@ export const privacySections: PrivacySection[] = [
     title: "Cookies and analytics",
     paragraphs: [
       "This website uses cookies and similar technologies. Cookies are small text files stored by your browser that can help a website function and provide information about how it is used.",
-      "We use Google Analytics to understand website traffic and improve our website. We also use Meta Pixel to measure website activity and the effectiveness of online communications. These providers may collect technical and usage information through cookies or similar technologies under their own privacy policies.",
-      "You can control or delete cookies through your browser settings and use the privacy controls provided by Google and Meta. Disabling cookies or opting out of analytics may affect some website features and the way website activity is measured.",
+      "We use Google Analytics to understand website traffic and improve our website. Google may collect technical and usage information through cookies or similar technologies under its own privacy policy.",
+      "You can control or delete cookies through your browser settings and use the privacy controls provided by Google. Disabling cookies or opting out of analytics may affect some website features and the way website activity is measured.",
+      "Enquiries submitted through this website are processed by Web3Forms and delivered to our email inbox. The information you enter is shared with Web3Forms to provide this service, under its own privacy policy.",
     ],
   },
   {

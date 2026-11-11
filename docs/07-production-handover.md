@@ -57,3 +57,13 @@ npm run deploy
 The build must receive the production Web3Forms key. GA4 is enabled only on
 `bennettadvisory.co.nz`, with measurement ID configured in `src/data/site.ts`.
 Confirm receipt through GA4 Realtime after launch.
+
+## Production SEO and navigation review
+
+See `08-production-readiness.md` for the 12 November 2026 audit and outstanding
+account-side confirmations. The shared header includes the approved Connectworks
+Client portal link, kept separate from the three internal navigation routes.
+
+Builds now use Astro 7.4.1 with Node 22.22.0 or newer. The framework version is
+pinned to the tested release; the dependency lockfile includes security fixes.
+Keep `compressHTML: true` to preserve the approved inline text spacing.

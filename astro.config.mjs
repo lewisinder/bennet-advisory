@@ -11,18 +11,21 @@ import sitemap from "@astrojs/sitemap";
 //   building. Preview builds are automatically noindex (see BaseLayout).
 const isGithubPages = process.env.DEPLOY_TARGET === "github-pages";
 const [owner, repo] = (process.env.GITHUB_REPOSITORY ?? "owner/repo").split("/");
+const basePath = isGithubPages ? `/${repo}` : "";
+const publicRoutes = new Set(["", "/about", "/contact", "/privacy"]);
 
 export default defineConfig({
   site: isGithubPages ? `https://${owner}.github.io` : "https://bennettadvisory.co.nz",
   base: isGithubPages ? `/${repo}/` : "/",
   output: "static",
+  // Preserve the approved inline spacing when building with Astro 7.
+  compressHTML: true,
   integrations: [
     sitemap({
-      // Utility pages stay out of the sitemap.
-      filter: (page) =>
-        !page.includes("/design-system") &&
-        !page.includes("/thank-you") &&
-        !page.endsWith("/404"),
+      // Include only the approved indexable pages, on either build target.
+      filter: (page) => publicRoutes.has(
+        new URL(page).pathname.slice(basePath.length).replace(/\/$/, ""),
+      ),
     }),
   ],
   // Astro can ignore a harness-injected PORT; this keeps in-editor previews working.

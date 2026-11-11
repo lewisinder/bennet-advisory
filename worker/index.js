@@ -12,7 +12,8 @@ export default {
     }
 
     const assetResponse = await env.ASSETS.fetch(request);
-    if (url.hostname === productionHostname) return assetResponse;
+    const isUtility = /^\/(design-system|thank-you)(\/|$)/.test(url.pathname) || assetResponse.status === 404;
+    if (url.hostname === productionHostname && !isUtility) return assetResponse;
 
     const response = new Response(assetResponse.body, assetResponse);
     response.headers.set("X-Robots-Tag", "noindex, nofollow");

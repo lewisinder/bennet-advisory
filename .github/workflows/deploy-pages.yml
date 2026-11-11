@@ -27,7 +27,8 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-      - run: npm install
+      - run: npm ci
+      - run: npm run check
       - run: npx astro build
         env:
           DEPLOY_TARGET: github-pages

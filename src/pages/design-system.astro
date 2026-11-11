@@ -12,10 +12,12 @@ import { team } from "@/data/team";
 const colours = [
   ["Navy", "--navy", "#1B3252", "Authority, hero panels and dark bands"],
   ["Teal", "--teal", "#2BACD6", "Actions, labels and active details"],
+  ["Text teal", "--teal-dark", "#126B88", "Accessible links and small labels on paper"],
   ["Paper", "--paper", "#F5F3EE", "Primary editorial canvas"],
   ["Paper dark", "--paper-dark", "#EAE6DF", "Folder layers and quiet contrast"],
   ["White", "--white", "#FFFFFF", "Navigation and document surfaces"],
   ["Ink", "--ink", "#16283F", "Reading text on light surfaces"],
+  ["Muted", "--muted", "#566273", "Supporting text with sufficient contrast on paper"],
 ];
 
 const typeRoles = [
@@ -94,6 +96,22 @@ const typeRoles = [
           </article>
         ))}
       </div>
+      <div class="ds-component-divider" id="heading-hierarchy">
+        <h3>Heading hierarchy</h3>
+        <p>
+          Each page has one H1, section titles use H2, and nested profiles and
+          entries use H3 or H4. The person-profile name retains the section-heading
+          visual size through its class; semantic levels do not dictate text size.
+        </p>
+      </div>
+      <div class="ds-component-divider" id="navigation">
+        <h3>Client portal navigation</h3>
+        <p>
+          The shared header adds Client portal after Home, About and Contact.
+          An external arrow and accessible label indicate a new tab. The same link
+          appears in the mobile menu. Primary teal buttons use navy text for contrast.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -117,7 +135,7 @@ const typeRoles = [
           <ServiceCard service={services[4]} />
         </div>
       </div>
-      <div class="ds-actions">
+      <div class="ds-actions" id="buttons">
         <a class="btn btn--primary" href="#buttons">Primary action</a>
         <a class="btn btn--secondary" href="#buttons">Secondary action</a>
         <a class="text-link" href="#buttons">Editorial text link</a>

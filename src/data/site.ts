@@ -32,6 +32,10 @@ export const site = {
   ],
 
   primaryCta: { label: "Get in touch", href: "/contact/" },
+  clientPortal: {
+    label: "Client portal",
+    href: "https://baltrustees.goconnectworks.com/login.htm",
+  },
   nav: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about/" },

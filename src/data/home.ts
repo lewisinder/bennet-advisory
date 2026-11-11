@@ -1,3 +1,5 @@
+import { site } from "@/data/site";
+
 export const home = {
   seo: {
     title: "Accounting, Tax & Trust Services Auckland",
@@ -94,6 +96,6 @@ export const home = {
     heading: "Existing trust client?",
     text:
       "Access the Bennett Advisory trust administration portal to view and manage your trust records.",
-    href: "https://baltrustees.goconnectworks.com/login.htm",
+    href: site.clientPortal.href,
   },
 } as const;
