@@ -11,7 +11,8 @@ export const credentials = [
       "STEP is the global professional body for trust and estate practitioners, advising families across generations.",
     image: stepLogo,
     alt: "STEP — Advising families across generations",
-    href: "https://www.step.org/",
+    href: "https://www.step.org/about-step",
+    linkLabel: "About STEP",
   },
   {
     id: "chartered-accountants",
@@ -21,7 +22,8 @@ export const credentials = [
       "Accounting for small to medium businesses, individuals and trusts by a Chartered Accountant.",
     image: charteredAccountantsLogo,
     alt: "Chartered Accountants Australia and New Zealand",
-    href: "https://www.charteredaccountantsanz.com/",
+    href: "https://www.charteredaccountantsanz.com/about-us/what-we-do/the-difference-between-a-ca-and-an-accountant",
+    linkLabel: "Why choose a Chartered Accountant?",
   },
   {
     id: "xero",
@@ -32,5 +34,6 @@ export const credentials = [
     image: xeroGoldPartnerLogo,
     alt: "Xero gold partner badge",
     href: "https://www.xero.com/nz/",
+    linkLabel: "Learn more",
   },
 ] as const;
