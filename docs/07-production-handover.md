@@ -5,21 +5,27 @@
 - Static launch approved by the client on 11 November 2026. TinaCMS is deferred.
 - GitHub source: https://github.com/lewisinder/bennet-advisory, branch `main`.
 - Cloudflare Worker: `bennett-advisory`, in Melanie's Cloudflare account.
-- Intended canonical URL: https://bennettadvisory.co.nz
+- Canonical production URL: https://bennettadvisory.co.nz
 - Review URL: https://bennett-advisory.bennett-advisory.workers.dev
 - Domain uses the new account's `jaxson.ns.cloudflare.com` and
   `lucy.ns.cloudflare.com` nameservers and is active in that account.
 
 ## Current launch status (12 November 2026)
 
-The production build is uploaded. Attaching the apex and www custom domains is
-blocked by Cloudflare error 100117: imported, externally managed A/AAAA records
-must be removed for these two hostnames before the Worker can own them.
-Keep email-related MX, TXT and CNAME records. Do not remove those for this change.
+The production site is live on the apex domain. The imported website A/AAAA
+records were removed, and the Worker now owns the apex and www custom domains.
+HTTPS works, www and HTTP requests redirect to the canonical HTTPS address while
+preserving paths and queries, and public pages, robots.txt, sitemaps and the
+custom 404 have been checked. The production homepage is indexable and includes
+GA4. The temporary hostname receives `X-Robots-Tag: noindex, nofollow`.
 
-After resolving the DNS conflict, run the deployment and verify both custom
-domains, their certificates, the www redirect, public pages, form and SEO files.
-The temporary hostname receives an `X-Robots-Tag: noindex, nofollow` header.
+Browser checks passed on Home, About and Contact at 1440px and 375px widths:
+no horizontal overflow, no broken images, no page or console errors, and mobile
+menu navigation works. The production browser loaded the configured GA4 tag.
+
+Public DNS checks confirm that the Microsoft 365 MX, SPF, verification TXT and
+autodiscover records remain available. Email inbox delivery still needs a final
+client confirmation; public DNS checks do not prove email delivery.
 
 ## Enquiry form
 
